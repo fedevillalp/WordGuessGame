@@ -1,0 +1,29 @@
+
+Create array "list_of_words"
+    Select first word and store in "current_game_word" array 
+    Initiate counter to move through "list of words"
+        Listen to keyboard from user and save letter "chosen_letter"
+            If ("chosen_letter" is not in "used_letters")
+                {
+                Push "chosen_letter" to "used_letters" array
+                If "chosen_letter" === a letter in "current_game_word"
+                    Display "user_letter" in right placeholder(s)
+                If "chosen_letter" !== any letter in "current_game_word"
+                    Push "chosen_letter" to the "incorrect_letters" array
+                    Display "incorrect_letters" array
+                    Add one count to "incorrect_guess_attempts"
+                 }
+            else {do nothing}
+
+
+Function 1: Listen to keyboard and save in variable
+Function 2: Argument 1 character and 1 array 
+            Return array with characters in common or false
+Function 3: Display an array
+Function 4: Display a counter
+
+
+
+
+        
+
