@@ -1,0 +1,22 @@
+#paint_row{
+    float:left;
+    background-color: aqua;
+}
+
+#input-group-text{
+    float:left;
+    width: 300px;
+}
+
+#title{
+    padding-left: 13%;
+    font-weight: bold;
+}
+
+#picture{
+    padding-left: 40%;
+}
+
+#paint_row_container{
+    padding-left: 29%;
+}
