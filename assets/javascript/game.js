@@ -1,5 +1,3 @@
-// To do: 
-// 1. When game ends fix display of # of wins before starting a new game
 
 //-------------------------------------------------------------
 //--------Global Variables--------------------------------
@@ -147,9 +145,6 @@ function drawLetter(found_letters,found_letters_index,secret_word_list,secret_wo
         var word = secret_word_list[secret_word_list_index];
         var letter_location = word.indexOf(letter); 
         console.log("Drawing letter in location :"+ letter_location);
-
-
-
         target = 'inputGroup-sizing-lg-'+letter_location+'';
         document.getElementById(target).innerHTML += ' <span class="inserted_letter" id='+found_letters[found_letters_index]+' > '+found_letters[found_letters_index]+' </span> ';
        
