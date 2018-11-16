@@ -19,7 +19,6 @@ let secret_word_list_index = 0;
 
 var userText = document.getElementById("chosen_letter");
 var incorrectLetters = document.getElementById("incorrect_letters");
-//var correctLetters = document.getElementById("correct_letters");
 var attemptsRemaining = document.getElementById("attempts_remaining");
 var wins = document.getElementById("wins");
 
@@ -45,7 +44,7 @@ document.onkeyup = function(event) {
         i = 0; // reset incorrect letters counter
         k++; // increase wins counter
         secret_word_list_index++; // increase secrect word list index
-        wins.textContent = k;
+        wins.textContent = k; //display # of wins
         attempts_remaining_counter = 10;
         attemptsRemaining.textContent = attempts_remaining_counter;
         console.log("You Win! You have won: " + k + " times");
@@ -60,15 +59,10 @@ document.onkeyup = function(event) {
 
     //Reset the counter and loop throught the word list array again
     if (secret_word_list_index === secret_word_list.length){ 
-        wins.textContent = k;
-        alert("Well done! You guessed all their " + secret_word_list.length + " last names! The game will restart!" + k);
-        secret_word_list_index = 0;
-        k=0;
-        userText.textContent = "";
-        incorrectLetters.textContent = "";
-        wins.textContent = "";  
-        attemptsRemaining.textContent = attempts_remaining_counter;
-        drawPlaceholder(secret_word_list,secret_word_list_index);
+
+        wins.textContent = k; // GOOGLE: settimeout  singleton
+        setTimeout(resetGame, 1000);
+
     }
 
     //IF loose reset game
@@ -198,5 +192,19 @@ function drawImage(secret_word_list_index){
 }
 
 
+//-------------------------------------------------------------------------
+//--------Reset Game-------------------------------------------------------
 
+function resetGame(){
+
+        alert("Well done! You guessed the last names of " + secret_word_list.length + " famous scientists correctly! The game will restart!");
+        secret_word_list_index = 0;
+        k=0;
+        userText.textContent = "";
+        incorrectLetters.textContent = "";
+        wins.textContent = "";  
+        attemptsRemaining.textContent = attempts_remaining_counter;
+        drawPlaceholder(secret_word_list,secret_word_list_index);
+
+}
 
