@@ -11,6 +11,7 @@ let k = 0; // # of wins counter
 let found_letters = [];
 let incorrect_letters = [];
 let wins_counter = 0;
+let attempts_remaining_counter = 10;
 let secret_word_list_index = 0;
 
 //-------------------------------------------------------------
@@ -19,6 +20,7 @@ let secret_word_list_index = 0;
 var userText = document.getElementById("chosen_letter");
 var incorrectLetters = document.getElementById("incorrect_letters");
 //var correctLetters = document.getElementById("correct_letters");
+var attemptsRemaining = document.getElementById("attempts_remaining");
 var wins = document.getElementById("wins");
 
 drawPlaceholder(secret_word_list,secret_word_list_index);
@@ -43,6 +45,8 @@ document.onkeyup = function(event) {
         k++; // increase wins counter
         secret_word_list_index++; // increase secrect word list index
         wins.textContent = k;
+        attempts_remaining_counter = 10;
+        attemptsRemaining.textContent = attempts_remaining_counter;
         console.log("You Win! You have won: " + k + " times");
         console.log("Secret Word List Index: " + secret_word_list_index + " legth :" + secret_word_list.length);
         deletePlaceholder();
@@ -62,6 +66,7 @@ document.onkeyup = function(event) {
         incorrectLetters.textContent = "";
         //correctLetters.textContent = "";
         wins.textContent = "";  
+        attemptsRemaining.textContent = attempts_remaining_counter;
         drawPlaceholder(secret_word_list,secret_word_list_index);
     }
 
@@ -88,6 +93,8 @@ function find(chosen_letter, secret_word_list, secret_word_list_index){
                 incorrect_letters[i]=chosen_letter;
                 console.log("Incorrect Letters :" + incorrect_letters);
                 incorrectLetters.textContent = incorrect_letters;
+                attempts_remaining_counter--;
+                attemptsRemaining.textContent = attempts_remaining_counter;
                 i++;
             }
        };
