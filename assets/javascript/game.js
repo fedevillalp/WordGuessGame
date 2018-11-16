@@ -4,7 +4,7 @@
 //-------------------------------------------------------------
 //--------Global Variables--------------------------------
 
-var secret_word_list = ["hawking","curie","fermi","plank","tesla"];
+var secret_word_list = ["hawking","curie","darwin","tesla"];
 let j = 0; // found letters counter
 let i = 0; // incorrect letters counter
 let k = 0; // # of wins counter
@@ -24,12 +24,13 @@ var attemptsRemaining = document.getElementById("attempts_remaining");
 var wins = document.getElementById("wins");
 
 drawPlaceholder(secret_word_list,secret_word_list_index);
-
+attemptsRemaining.textContent = attempts_remaining_counter;
 
 //-------------------------------------------------------------
 //--------Game Loop -------------------------------------------
 
 document.onkeyup = function(event) {
+    attemptsRemaining.textContent = attempts_remaining_counter;
     userText.textContent = event.key; 
     chosen_letter = event.key;
     find(chosen_letter,secret_word_list,secret_word_list_index);
@@ -53,21 +54,36 @@ document.onkeyup = function(event) {
         if (secret_word_list_index < secret_word_list.length){
         drawPlaceholder(secret_word_list,secret_word_list_index)};
         incorrectLetters.textContent = "";
-        //correctLetters.textContent = "";
+        userText.textContent = ""; 
+        
     };
 
     //Reset the counter and loop throught the word list array again
     if (secret_word_list_index === secret_word_list.length){ 
-        alert("Well done! You guessed all their " + secret_word_list.length + " last names! The game will restart!");
-        //alert("Secret Word List Index: " + secret_word_list_index + " legth :" + secret_word_list.length);
+        wins.textContent = k;
+        alert("Well done! You guessed all their " + secret_word_list.length + " last names! The game will restart!" + k);
         secret_word_list_index = 0;
         k=0;
         userText.textContent = "";
         incorrectLetters.textContent = "";
-        //correctLetters.textContent = "";
         wins.textContent = "";  
         attemptsRemaining.textContent = attempts_remaining_counter;
         drawPlaceholder(secret_word_list,secret_word_list_index);
+    }
+
+    //IF loose reset game
+    if(attempts_remaining_counter === -1){
+        alert("You ran out of attempts and lost! The game will start again...");
+        secret_word_list_index = 0;
+        k=0;
+        userText.textContent = "";
+        incorrectLetters.textContent = "";
+        wins.textContent = "";  
+        deletePlaceholder();
+        drawPlaceholder(secret_word_list,secret_word_list_index);
+        attempts_remaining_counter = 10;
+        attemptsRemaining.textContent = attempts_remaining_counter;
+
     }
 
 };
@@ -84,7 +100,6 @@ function find(chosen_letter, secret_word_list, secret_word_list_index){
        if ((a.includes(chosen_letter))&&(!found_letters.includes(chosen_letter))){
             found_letters[j]=chosen_letter;
             console.log("Found Letters: " + found_letters);
-            //correctLetters.textContent = found_letters;
             drawLetter(found_letters,j,secret_word_list,secret_word_list_index);
             j++;
        } else{
@@ -173,14 +188,15 @@ function drawImage(secret_word_list_index){
             document.getElementById("picture_holder").innerHTML = '<img src="./assets/images/curie.jpeg" id="picture">';
             break;
         case 2:
-            document.getElementById("picture_holder").innerHTML = '<img src="./assets/images/fermi.jpeg" id="picture">';
+            document.getElementById("picture_holder").innerHTML = '<img src="./assets/images/darwin.jpeg" id="picture">';
             break;
         case 3:
-            document.getElementById("picture_holder").innerHTML = '<img src="./assets/images/plank.jpeg" id="picture">';
-            break;
-        case 4:
             document.getElementById("picture_holder").innerHTML = '<img src="./assets/images/tesla.jpeg" id="picture">';
             break;
     }
 
 }
+
+
+
+
